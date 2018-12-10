@@ -1,0 +1,21 @@
+name: stlink
+maintainer: Paul-Emmanuel Raoul <skyper@skyplabs.net>
+license: BSD
+summary: Firmware programmer for STM32 STLINK v1/v2 protocol
+homepage: https://github.com/texane/stlink
+commands:
+  compile: |
+    make release
+  install: |
+    cd build/Release
+    make install DESTDIR="${BP_DESTDIR}"
+  testinstall: |
+    st-flash --help
+packages:
+  debian9:
+    deps:
+      - libusb-1.0-0
+    builddeps:
+      - build-essential
+      - cmake
+      - libusb-1.0-0-dev
